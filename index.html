@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Etch-a-Sketch</title>
+  <style>
+    #divContainer{
+      width: 640px;
+      height: 640px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .square {
+      box-sizing: border-box;
+      height:40px;
+      width: 40px;
+      border: 1px solid black;  
+    }
+
+
+  </style>
+</head>
+<body>
+  <div id="divContainer"></div>
+<script>  
+  function createDivInsideDiv(rows,column) {
+    for(i=0; i<rows*column; i++){
+    let mainDiv= document.getElementById('divContainer');
+    let firstSquare = document.createElement("div");
+    firstSquare.classList.add('square');
+   // console.log(firstSquare);
+    mainDiv.append(firstSquare);
+    }
+  }
+
+  createDivInsideDiv(16,16);
+  
+  function getRandomColor() {
+   let letters = '0123456789ABCDEF';
+   let color = '#';
+   for(i=0; i<6; i++){
+   color= color+letters[Math.floor(Math.random() * 16)];
+   console.log();
+   }
+   return color;
+  }
+  
+  for (let i = 0; i < (document.getElementsByClassName("square").length); i++) {
+    let squareBox = document.getElementsByClassName("square")[i];
+      squareBox.addEventListener('mouseover', function(){
+        squareBox.style.backgroundColor = getRandomColor();
+      });
+  }
+
+  for (let i = 0; i < (document.getElementsByClassName("square").length); i++) {
+    let squareBox = document.getElementsByClassName("square")[i];
+      squareBox.addEventListener('mouseout', function(){
+        squareBox.style.backgroundColor = '#FFFFFF';
+      });
+  }
+
+  
+</script>
+</body>
+</html>
