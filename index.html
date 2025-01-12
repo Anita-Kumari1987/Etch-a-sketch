@@ -70,32 +70,39 @@
       });
   }
 
-  let mainDiv= document.getElementById('divContainer');
-  let newButton= document.createElement("button");
-  newButton.innerHTML='Create new size';
-  newButton.classList.add('button');
-  newButton.id= "new_btn";
-  mainDiv.before(newButton);
-  newButton.addEventListener('click',function(){
-    let newSize = prompt('Enter the number of squares per side for the new grid (max 100):')
-    if(newSize<1 || newSize>100){
-    alert("Please enter the valid number");
-    } else {
-      
-    const element = document.getElementById("divContainer");
-  element.remove();
-  let g = document.createElement('div');
-g.setAttribute("id", "divContainer");
-document.getElementsByTagName('body')[0].appendChild(g);
- 
-  let styleCSS = "height:"+ (640/newSize) +"px;" + "width:"+ (640/newSize) +"px";
-  
+  let mainDiv = document.getElementById('divContainer');
+    let newButton = document.createElement("button");
+    newButton.innerHTML = 'Create new size';
+    newButton.classList.add('button');
+    newButton.id = "new_btn";
+    mainDiv.before(newButton);
+    newButton.addEventListener('click', function () {
+      let newSize = prompt('Enter the number of squares per side for the new grid (max 100):')
+      if (newSize < 1 || newSize > 100) {
+        alert("Please enter the valid number");
+      } else {
+
+        const element = document.getElementById("divContainer");
+        element.remove();
+        let g = document.createElement('div');
+        g.setAttribute("id", "divContainer");
+        document.getElementsByTagName('body')[0].appendChild(g);
+
+        let styleCSS = "height:" + (640 / newSize) + "px;" + "width:" + (640 / newSize) + "px";
+
         createDivInsideDiv(newSize, newSize);
         for (let i = 0; i < (document.getElementsByClassName("square").length); i++) {
-          document.getElementsByClassName("square")[i].setAttribute("style",styleCSS);
+          document.getElementsByClassName("square")[i].setAttribute("style", styleCSS);
+          getRandomColor();
+          for (let i = 0; i < (document.getElementsByClassName("square").length); i++) {
+            let squareBox = document.getElementsByClassName("square")[i];
+            squareBox.addEventListener('mouseover', function () {
+              squareBox.style.backgroundColor = getRandomColor();
+            });
+          }
         }
       }
-  });
+    });
 
 
 
