@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Etch-a-Sketch</title>
   <style>
+    body{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(230, 177, 159);
+    }
     #divContainer{
       width: 640px;
       height: 640px;
@@ -16,6 +23,15 @@
       height:40px;
       width: 40px;
       border: 1px solid black;  
+    }
+    #new_btn{
+      width: 150px;
+      height: 35px;
+      margin: 30px;
+      font-size: 1rem;
+      border-radius: 7px;
+      background-color: cadetblue;
+      margin-top: 0px;
     }
 
 
@@ -55,11 +71,10 @@
 
   let mainDiv= document.getElementById('divContainer');
   let newButton= document.createElement("button");
-  newButton.innerHTML='create new size';
+  newButton.innerHTML='Create new size';
   newButton.classList.add('button');
+  newButton.id= "new_btn";
   mainDiv.before(newButton);
-  newButton.style.height='50px';
-  newButton.style.width='100px';
   newButton.addEventListener('click',function(){
     let newSize = prompt('Enter the number of squares per side for the new grid (max 100):')
     if(newSize<1 || newSize>100){
